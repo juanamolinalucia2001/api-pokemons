@@ -13,13 +13,13 @@
             max-width="300">
             <v-card-container class="center" >
               <img :src="data.img" alt="kskjnsj">
-               <v-card-title>
+               <v-card-title large>
                 {{data.name}}
               </v-card-title>
             </v-card-container>
               
             <v-card-subtitle class="center">
-                1,000 miles of wonder
+                #{{index}}
             </v-card-subtitle>
   
      
