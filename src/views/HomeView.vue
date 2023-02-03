@@ -1,19 +1,20 @@
 <template>
   <div class="home">
-    <v-row class="mt-5">
+    <v-row class="mt-5 ">
       <v-col
         v-for="(data, index) in pokemons" :key="index"
         cols="6"
         md="4"
+        xs="12"
       >
            <v-card
-            class="mx-auto"
+            class="mx-auto "
             color="#26c6da"
             dark
             max-width="300">
-            <v-card-container class="center" >
+            <v-card-container class="center"  >
               <img :src="data.img" alt="kskjnsj">
-               <v-card-title large>
+               <v-card-title>
                 {{data.name}}
               </v-card-title>
             </v-card-container>
@@ -22,36 +23,37 @@
                 #{{index}}
             </v-card-subtitle>
 
-          <div>
-    <v-alert
-      v-model="alert"
-      border="left"
-      close-text="Close Alert"
-      color="deep-purple accent-4"
-      dark
-      dismissible
-    > 
+        
+      <v-item-group class="center">
+          <v-item v-slot="{ active, toggle }" >
+              <v-btn
+                :color="active ? 'purple darken-4 ' : 'red'"
+                class="d-flex align-center justify-center"
+                dark
+                :height="active ? '80' : '50'"
+                :width="active ? '100%' : '100'"
+                @click="toggle"
+              >
+                power
+                <v-scroll-y-transition>
+                  <div
+                    v-if="active"
+                    class="flex-grow-1 text-right "
+          
+                  >
+                   <p>Ability : {{data.ability}}</p> 
+                   <p>Experience : {{data.xp}}xp</p>
+                  </div>
+                </v-scroll-y-transition>
+              </v-btn>
+            </v-item>
+      </v-item-group>
 
-      
-      <h4>Base experience : {{data.xp}}XP</h4>
-      <h4>Ability : {{data.ability}}</h4>
-      
-    </v-alert>
-    <div class="text-center">
-      <v-btn
-        v-if="!alert"
-        color="deep-purple accent-4"
-        dark
-        @click="alert = true"
-      >
-        Power
-      </v-btn>
-    </div>
-  </div>
-            
-  
-     
-            </v-card>
+
+
+          </v-card>
+
+          
       </v-col>
     </v-row>
   </div>
@@ -64,9 +66,8 @@ import axios from 'axios';
   export default {
    data(){
     return{
-      show:false,
       pokemons:[],
-      alert:false
+      
     }
    },
    created(){
@@ -80,7 +81,8 @@ import axios from 'axios';
            name:response.data.name,
            img:response.data.sprites.front_default,
            xp:response.data.base_experience,
-           ability:response.data.abilities[0].ability.name
+           ability:response.data.abilities[0].ability.name,
+          
            
        };
 
@@ -95,11 +97,15 @@ import axios from 'axios';
 
     
    },
+   methods:{
+    
+   }
   };
 </script>
 <style  scoped>
 .center{
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top:2%;
 }

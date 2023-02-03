@@ -5,13 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-  },
-  getters: {
+    loading:{
+      estado:false,
+    }
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    mostrarAlert(state, payload){
+      state.loading.estado = true
+    },
+    ocultarAlert(state){
+      state.loading.estado = false
+    }
   }
 })
