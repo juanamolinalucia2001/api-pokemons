@@ -34,6 +34,7 @@
         <span class="mr-2">Repositorio del proyecto</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
+      
     </v-app-bar>
 
     <v-main>
@@ -53,6 +54,6 @@ export default {
   }),
   components:{
     Footer
-  }
+  },
 };
 </script>
