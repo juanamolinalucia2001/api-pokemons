@@ -3,10 +3,24 @@
     <v-row class="mt-5 mx-auto" >
       <h1>Coins: ${{coins}}</h1>
     </v-row>
-  
+     <v-row class="text-center">
+      <v-col cols="4"
+         >
+          <v-text-field
+          v-model="search"
+          label="Buscar Pokemon"
+          hide-details
+          prepend-icon="mdi-magnify"
+          single-line
+          @input="filterPokemons"
+        >
+        </v-text-field>
+      </v-col>
+    </v-row>
+    
     <v-row class="mt-5 ">
       <v-col
-        v-for="pokemon in pokemons" :key="pokemon.name"
+        v-for="pokemon in filteredPokemons" :key="pokemon.name"
         cols="6"
         md="4"
         xs="12"
@@ -70,7 +84,8 @@ import {mapState, mapActions} from 'vuex'
    data(){
     return{
       dialog: false,
-      selectedPokemon: {}
+      selectedPokemon: {},
+      search:''
     }
    },
    created(){
@@ -78,14 +93,26 @@ import {mapState, mapActions} from 'vuex'
     this.fetchPokemons();
    },
    computed:{
-    ...mapState(['pokemons', 'coins'])
+    ...mapState(['pokemons', 'coins']),
+
+     filteredPokemons(){
+      return this.pokemons.filter(pokemon => {
+        return pokemon.name.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
    },
    methods:{
     ...mapActions(['fetchPokemons','buyPokemon']),
     showModal(pokemon) {
       this.selectedPokemon = pokemon
       this.dialog = true
+    },
+    filterPokemons(){
+      this.filteredPokemons = this.pokemons.filter(pokemon =>{
+        return pokemon.name.toLowerCase().includes(this.search.toLowerCase())
+      })
     }
+  
 
    }
   };

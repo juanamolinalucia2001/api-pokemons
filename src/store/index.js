@@ -8,18 +8,23 @@ export default new Vuex.Store({
   state: {
     pokemons:[],
     carrito:[],
-    coins:1000  
+    coins:1000,
+    searchPokemon:''  
+  },
+  getters:{
+   
+
   },
   mutations:{
-    agregarAlCarrito(state, pokemon){
-      state.carrito.push(pokemon)
-      state.monedas -= pokemon.xp
-    },
+
     buyPokemon(state, pokemon) {
       state.carrito.push(pokemon)
     },
     decrementCoins(state, amount) {
       state.coins -= amount
+    },
+    updateSearch(state, payload){
+      state.searchPokemon=payload
     }
   },
   actions: {
