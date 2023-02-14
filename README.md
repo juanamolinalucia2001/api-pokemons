@@ -1,6 +1,6 @@
 # pokedex
 
-#https://api-pokemons-vue.netlify.app/
+https://api-pokemons-vue.netlify.app/
 
 ## Project setup
 ```
