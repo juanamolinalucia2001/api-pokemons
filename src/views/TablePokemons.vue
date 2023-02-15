@@ -13,7 +13,7 @@
         >
         </v-text-field>
      </v-col> 
-    <v-simple-table dark fixed-header  class="mt-5" >
+    <v-simple-table height="300">
     <template v-slot:default>
       <thead>
         <tr>
