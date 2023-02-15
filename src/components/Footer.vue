@@ -17,7 +17,7 @@
 
         <v-btn
           v-for="data in icons"
-          :key="data"
+          :key="data.id"
           class="mx-4"
           dark
           icon
@@ -42,9 +42,9 @@
     name:'Footer',
     data: () => ({
       icons: [
-        {icon:'mdi-facebook',link:'https://www.facebook.com/PokemonOficialLatAm/'},
-        {icon:'mdi-twitter',link:'https://twitter.com/Pokemon_ES_ESP'},
-        {icon:'mdi-instagram',link:'https://www.instagram.com/PokemonESP/'}
+        {id:1,icon:'mdi-facebook',link:'https://www.facebook.com/PokemonOficialLatAm/'},
+        {id:2,icon:'mdi-twitter',link:'https://twitter.com/Pokemon_ES_ESP'},
+        {id:3,icon:'mdi-instagram',link:'https://www.instagram.com/PokemonESP/'}
       ],
     }),
   }
