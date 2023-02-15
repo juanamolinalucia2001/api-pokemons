@@ -26,15 +26,10 @@
      
       <v-spacer></v-spacer>
 
-       <v-btn href='/' text>
-        <v-icon>mdi-cart</v-icon>
-      </v-btn>
-      <v-btn href='/table' text>
-        <v-icon>mdi-table</v-icon>
-      </v-btn>
-       <v-btn href='/game' text>
-        <v-icon>mdi-nintendo-game-boy</v-icon>
-      </v-btn>
+       <router-link to="/"><v-btn text><v-icon>mdi-home</v-icon></v-btn></router-link>
+       <router-link to="/table"><v-btn text> <v-icon>mdi-table</v-icon></v-btn></router-link>
+       <router-link to="/game"><v-btn text> <v-icon>mdi-nintendo-game-boy</v-icon></v-btn></router-link>
+       
       <v-btn  text>
           <v-img src="https://cdn-icons-png.flaticon.com/512/217/217853.png" height="20px" width="20px"></v-img>
          <span> {{coins}}</span>
