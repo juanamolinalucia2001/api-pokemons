@@ -1,7 +1,7 @@
 
 <template>
 <div class="container" >
-  <v-row class="d-flex-inline justify-center mt-5">
+  <v-row class="d-flex-inline justify-center">
      <v-col cols="4">
         <v-text-field
           v-model="search"
