@@ -23,16 +23,21 @@
           width="150"
         />
       </div>
-
+     
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/juanamolinalucia2001/api-pokemons"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Repositorio del proyecto</span>
-        <v-icon>mdi-open-in-new</v-icon>
+       <v-btn href='/' text>
+        <v-icon>mdi-cart</v-icon>
+      </v-btn>
+      <v-btn href='/table' text>
+        <v-icon>mdi-table</v-icon>
+      </v-btn>
+       <v-btn href='/game' text>
+        <v-icon>mdi-nintendo-game-boy</v-icon>
+      </v-btn>
+      <v-btn  text>
+          <v-img src="https://cdn-icons-png.flaticon.com/512/217/217853.png" height="20px" width="20px"></v-img>
+         <span> {{coins}}</span>
       </v-btn>
       
     </v-app-bar>
@@ -46,6 +51,7 @@
 
 <script>
 import Footer from './components/Footer.vue'
+import {mapState} from 'vuex';
 export default {
   name: 'App',
 
@@ -55,5 +61,8 @@ export default {
   components:{
     Footer
   },
+  computed:{
+    ...mapState(['coins'])
+  }
 };
 </script>

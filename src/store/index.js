@@ -9,11 +9,7 @@ export default new Vuex.Store({
     pokemons:[],
     carrito:[],
     coins:1000,
-    searchPokemon:''  
-  },
-  getters:{
-   
-
+    searchPokemon:''
   },
   mutations:{
 
@@ -23,9 +19,25 @@ export default new Vuex.Store({
     decrementCoins(state, amount) {
       state.coins -= amount
     },
-    updateSearch(state, payload){
-      state.searchPokemon=payload
+    updateSearchPokemon(state, pokemon){
+      state.searchPokemon = pokemon
+    },
+    incrementCoins(state){
+      state.coins +=200
     }
+
+  },
+
+  getters:{
+    filteredPokemons(state){
+      return state.pokemons.filter(pokemon => {
+        return pokemon.name.toLowerCase().includes(state.searchPokemon.toLowerCase())
+      })
+    },
+    coins(state){
+      return state.coins
+    }
+
   },
   actions: {
     // Acción para realizar la compra de un Pokemon
@@ -37,13 +49,14 @@ export default new Vuex.Store({
         alert('El dinero disponible no alcanza para comprar este pokemon  ')
       }
     },
+    
     //busco los primeros n  los pokemons y los muestro 
     fetchPokemons(){
       for(let i=0; i<18 ; i++){
         axios
         .get(`https://pokeapi.co/api/v2/pokemon/${i+1}`)
         .then(response =>{
-        console.log(response.data.stats)
+        console.log(response.data.types[1].type.name)
         let pokemon={
             name:response.data.name,
             img:response.data.sprites.front_default,
@@ -52,6 +65,7 @@ export default new Vuex.Store({
             hp:response.data.stats[0].base_stat,
             attack:response.data.stats[1].base_stat,
             defense:response.data.stats[2].base_stat,
+            type:response.data.types[1].type.name,
             price: Math.floor(Math.random()*500)+10
             
 
