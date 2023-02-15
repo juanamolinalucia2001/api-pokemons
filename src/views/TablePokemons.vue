@@ -1,7 +1,7 @@
 
 <template>
 <div class="container" >
-  <v-row class="justify-center">
+ 
      <v-col cols="4">
         <v-text-field
           v-model="search"
@@ -13,7 +13,6 @@
         >
         </v-text-field>
      </v-col> 
-     </v-row>
     <v-simple-table dark fixed-heade  class="mt-5" >
     <template v-slot:default>
       <thead>
