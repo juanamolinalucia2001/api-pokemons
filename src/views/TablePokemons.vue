@@ -9,11 +9,11 @@
           hide-details
           prepend-icon="mdi-magnify"
           single-line
-          @input="filteredPokemons"
+          @input="filterPokemons"
         >
         </v-text-field>
      </v-col> 
-    <v-simple-table height="300">
+    <v-simple-table dark>
     <template v-slot:default>
       <thead>
         <tr>
@@ -31,8 +31,7 @@
       </thead>
       <tbody>
         <tr
-           v-for="pokemon in filteredPokemons"
-            :key="pokemon.name"
+           v-for="(pokemon, index) in filteredPokemons" :key="index"
         >
           <td><img :src="pokemon.img" alt="kskjnsj" >{{pokemon.name}}</td>
           <td>{{pokemon.type}}</td>
@@ -48,16 +47,16 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6">
-                  <p> <b> Habilidad: </b>{{ selectedPokemon.ability }}</p>
-                  <p><b>Experiencia base:</b>  {{ selectedPokemon.xp }}</p>
-                  <p><b>HP:</b>{{selectedPokemon.hp}}</p>
-                  <p><b>Attack:</b> {{selectedPokemon.attack}}</p>
-                  <p><b>Defense: </b>{{selectedPokemon.defense}}</p>
+                  <p> <b> Habilidad: </b>{{ selectedP.ability }}</p>
+                  <p><b>Experiencia base:</b>  {{ selectedP.xp }}</p>
+                  <p><b>HP:</b>{{selectedP.hp}}</p>
+                  <p><b>Attack:</b> {{selectedP.attack}}</p>
+                  <p><b>Defense: </b>{{selectedP.defense}}</p>
             </div>
              <div class="col-md-6 mt-5" >
-              <h4 class="mr-3">{{selectedPokemon.name}}</h4>
+              <h4 class="mr-3">{{selectedP.name}}</h4>
               <div class="redondo">
-                <img :src="selectedPokemon.img" alt="imagenPokemon">
+                <img :src="selectedP.img" alt="imagenPokemon">
               </div>
               
             </div>
@@ -83,7 +82,7 @@ export default {
         return{
             search:'',
             dialog:false,
-            selectedPokemon: {},
+            selectedP: {},
         }
     },
     computed:{
@@ -97,9 +96,15 @@ export default {
     methods:{
         ...mapActions(['fetchPokemons']),
       showModal(pokemon) {
-      this.selectedPokemon = pokemon
+      this.selectedP = pokemon
       this.dialog = true
-    }
+    },
+    filterPokemons() {
+      this.filteredPokemons = this.pokemons.filter(pokemon => {
+       return pokemon.name.toLowerCase().includes(this.search.toLowerCase())
+  })
+}
+    ,
     },
     created(){
         this.fetchPokemons();

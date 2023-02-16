@@ -3,15 +3,14 @@
    
     
      <v-row class="d-flex-inline justify-center mt-5">
-      <v-col cols="4"
-         >
+      <v-col cols="4">
           <v-text-field
           v-model="search"
-          label="Buscar Pokemon por nombre""
+          label="Buscar Pokemon por nombre"
           hide-details
           prepend-icon="mdi-magnify"
           single-line
-          @input="filteredPokemons"
+          @input="filterPokemons"
         >
         </v-text-field>
       
@@ -21,7 +20,7 @@
     
     <v-row class="mt-5 ">
       <v-col
-        v-for="pokemon in filteredPokemons" :key="pokemon.name"
+        v-for="(pokemon, index) in filteredPokemons" :key="index"
         cols="6"
         md="4"
         xs="12"
@@ -33,24 +32,22 @@
             width="300"
             >
             
-            <v-card-container class="center" >   
+            <div class="center" >   
              
-              <img :src="pokemon.img" alt="kskjnsj" >
+              <img :src="pokemon.img" alt="pokemonImg" >
                <v-card-title>
                 <h3>{{ pokemon.name }}</h3>
               </v-card-title>
 
-            </v-card-container>
+            </div>
             <v-card-title class="center">
               ${{pokemon.price}}
             </v-card-title>
            <v-card-actions class="center">
-            <v-btn @click="buyPokemon(pokemon)">Comprar</v-btn>
-            <v-btn @click="showModal(pokemon)">
-              Ver más
-            </v-btn>
+              <v-btn @click="buyPokemon(pokemon)">Comprar</v-btn>
+              <v-btn @click="showModal(pokemon)">Ver más</v-btn>
           </v-card-actions>
-          </v-card> 
+          </v-card>
       </v-col>
     </v-row>
 
@@ -98,7 +95,7 @@ import {mapState, mapActions} from 'vuex'
       search:''
     }
    },
-   created(){
+   mounted(){
     //cuando todavia no hay nada visible
     this.fetchPokemons();
    },
@@ -116,7 +113,13 @@ import {mapState, mapActions} from 'vuex'
     showModal(pokemon) {
       this.selectedPokemon = pokemon
       this.dialog = true
-    }
+    },
+      filterPokemons() {
+      this.filteredPokemons = this.pokemons.filter(pokemon => {
+       return pokemon.name.toLowerCase().includes(this.search.toLowerCase())
+  })
+}
+
   
 
    }
