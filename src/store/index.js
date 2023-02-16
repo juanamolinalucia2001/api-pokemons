@@ -10,6 +10,7 @@ export default new Vuex.Store({
     carrito:[],
     coins:1000,
     search: '',
+    visible:true
   },
   mutations:{
     SET_POKEMONS(state, pokemons) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     incrementCoins(state){
       state.coins +=200
     },
+    cambiarVisibilidad(state){
+      state.visible = !state.visible
+    }
     
 
 

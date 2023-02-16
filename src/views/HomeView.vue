@@ -18,7 +18,7 @@
         
     </v-row>
     
-    <v-row class="mt-5 ">
+    <v-row class="mt-5 " v-if="visible" >
       <v-col
         v-for="(pokemon, index) in filteredPokemons" :key="index"
         cols="6"
@@ -49,6 +49,40 @@
           </v-card-actions>
           </v-card>
       </v-col>
+    </v-row>
+
+    <v-row class="mt-5" v-if="!visible">
+      <v-col>
+    <v-simple-table dark class="mr-5 ml-5">
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            Pokemon
+          </th>
+          <th class="text-left">
+            Type
+          </th>
+          <th>
+            Attack
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+           v-for="(pokemon, index) in filteredPokemons" :key="index"
+        >
+          <td><img :src="pokemon.img" alt="kskjnsj" >{{pokemon.name}}</td>
+          <td>{{pokemon.type}}</td>
+          <td>{{pokemon.attack}}</td>
+          <td><v-btn class="btn btn-danger" @click="showModal(pokemon)">info</v-btn></td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+      </v-col>
+
     </v-row>
 
     <v-dialog v-model="dialog" max-width="500px">
@@ -92,7 +126,7 @@ import {mapState, mapActions} from 'vuex'
     return{
       dialog: false,
       selectedPokemon: {},
-      search:''
+      search:'',
     }
    },
    mounted(){
@@ -100,7 +134,7 @@ import {mapState, mapActions} from 'vuex'
     this.fetchPokemons();
    },
    computed:{
-    ...mapState(['pokemons', 'coins']),
+    ...mapState(['pokemons', 'coins','visible']),
 
      filteredPokemons(){
       return this.pokemons.filter(pokemon => {
@@ -130,6 +164,13 @@ import {mapState, mapActions} from 'vuex'
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.redondo{
+  border: 1px solid #2ECC71;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  background-color: #2ECC71;
 }
 
 

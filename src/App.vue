@@ -26,8 +26,8 @@
      
       <v-spacer></v-spacer>
 
-       <router-link to="/"><v-btn text><v-icon>mdi-home</v-icon></v-btn></router-link>
-       <router-link to="/table"><v-btn text> <v-icon>mdi-table</v-icon></v-btn></router-link>
+       <router-link to="/"><v-btn text @click="cambiarVisibilidad"><v-icon>mdi-home</v-icon></v-btn></router-link>
+       <router-link to="/"><v-btn text @click="cambiarVisibilidad"> <v-icon>mdi-table</v-icon></v-btn></router-link>
        <router-link to="/game"><v-btn text> <v-icon>mdi-nintendo-game-boy</v-icon></v-btn></router-link>
        
       <v-btn  text>
@@ -46,7 +46,7 @@
 
 <script>
 import Footer from './components/Footer.vue'
-import {mapState} from 'vuex';
+import {mapState, mapMutations} from 'vuex';
 export default {
   name: 'App',
 
@@ -57,7 +57,10 @@ export default {
     Footer
   },
   computed:{
-    ...mapState(['coins'])
+    ...mapState(['coins', 'visible'])
+  },
+  methods:{
+    ...mapMutations(['cambiarVisibilidad']),
   }
 };
 </script>
