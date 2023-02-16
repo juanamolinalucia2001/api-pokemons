@@ -26,8 +26,8 @@
      
       <v-spacer></v-spacer>
 
-       <router-link to="/"><v-btn text @click="cambiarVisibilidad"><v-icon>mdi-home</v-icon></v-btn></router-link>
-       <router-link to="/"><v-btn text @click="cambiarVisibilidad"> <v-icon>mdi-table</v-icon></v-btn></router-link>
+       <router-link to="/"><v-btn text @click="cambiarVerdadero"><v-icon>mdi-home</v-icon></v-btn></router-link>
+       <router-link to="/"><v-btn text @click="cambiarFalso"> <v-icon>mdi-table</v-icon></v-btn></router-link>
        <router-link to="/game"><v-btn text> <v-icon>mdi-nintendo-game-boy</v-icon></v-btn></router-link>
        
       <v-btn  text>
@@ -60,7 +60,7 @@ export default {
     ...mapState(['coins', 'visible'])
   },
   methods:{
-    ...mapMutations(['cambiarVisibilidad']),
+    ...mapMutations(['cambiarFalso', 'cambiarVerdadero']),
   }
 };
 </script>

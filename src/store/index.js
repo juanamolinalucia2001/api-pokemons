@@ -28,8 +28,11 @@ export default new Vuex.Store({
     incrementCoins(state){
       state.coins +=200
     },
-    cambiarVisibilidad(state){
-      state.visible = !state.visible
+    cambiarFalso(state){
+      state.visible = false
+    },
+    cambiarVerdadero(state){
+      state.visible = true
     }
     
 
